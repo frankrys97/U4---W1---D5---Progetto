@@ -28,6 +28,7 @@ public class ElementoVideo extends ElementoMultimediale implements RiproduzioneA
     @Override
     public void play() {
         System.out.println("Visualizzazione video in corso");
+        System.out.println();
         for (int i = 0; i < this.getDurata(); i++) {
             System.out.print(this.getTitolo());
             for (int j = 0; j < this.volume; j++) {

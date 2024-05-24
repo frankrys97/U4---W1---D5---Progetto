@@ -16,6 +16,7 @@ public class ElementoAudio extends ElementoMultimediale implements RiproduzioneA
     public void play() {
 
         System.out.println("Riproduzione audio in corso");
+        System.out.println();
 
         for (int i = 0; i < this.getDurata(); i++) {
             System.out.print(this.getTitolo());
