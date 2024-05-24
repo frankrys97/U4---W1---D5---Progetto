@@ -16,27 +16,40 @@ public class ElementoVideo extends ElementoMultimediale implements RiproduzioneA
 
 
     @Override
-    public void alzaLuminosita() {
-
+    public void alzaLuminosita(int luminositaPlus) {
+        this.luminosita += luminositaPlus;
     }
 
     @Override
-    public void abbassaLuminosita() {
-
+    public void abbassaLuminosita(int luminositaMinus) {
+        this.luminosita -= luminositaMinus;
     }
 
     @Override
     public void play() {
+        System.out.println("Visualizzazione video in corso");
+        for (int i = 0; i < this.getDurata(); i++) {
+            System.out.print(this.getTitolo());
+            for (int j = 0; j < this.volume; j++) {
+                System.out.print("!");
+            }
+            for (int k = 0; k < this.luminosita; k++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
 
     }
 
     @Override
-    public void alzaVolume() {
+    public void alzaVolume(int volumePlus) {
+        this.volume += volumePlus;
 
     }
 
     @Override
-    public void abbassaVolume() {
+    public void abbassaVolume(int volumeMinus) {
+        this.volume -= volumeMinus;
 
     }
 }

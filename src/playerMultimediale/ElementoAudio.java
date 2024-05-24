@@ -4,7 +4,7 @@ import interfaces.RiproduzioneAudioVideo;
 
 public class ElementoAudio extends ElementoMultimediale implements RiproduzioneAudioVideo {
 
-    private int volume;
+    protected int volume;
 
     public ElementoAudio(String titolo, int durata, int volume) {
         super(titolo, durata);
@@ -14,17 +14,30 @@ public class ElementoAudio extends ElementoMultimediale implements RiproduzioneA
 
     @Override
     public void play() {
+
         System.out.println("Riproduzione audio in corso");
+
+        for (int i = 0; i < this.getDurata(); i++) {
+            System.out.print(this.getTitolo());
+            for (int j = 0; j < this.volume; j++) {
+                System.out.print("!");
+            }
+            System.out.println();
+        }
     }
 
     @Override
-    public void alzaVolume() {
-
+    public void alzaVolume(int volumePlus) {
+        this.volume += volumePlus;
     }
+
 
     @Override
-    public void abbassaVolume() {
-
+    public void abbassaVolume(int volumeMinus) {
+        this.volume -= volumeMinus;
     }
 
+    public int getVolume() {
+        return volume;
+    }
 }

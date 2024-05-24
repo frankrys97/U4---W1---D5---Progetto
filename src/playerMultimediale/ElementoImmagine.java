@@ -13,16 +13,28 @@ public class ElementoImmagine extends ElementoMultimediale implements Luminosita
 
 
     @Override
-    public void alzaLuminosita() {
-
+    public void alzaLuminosita(int luminositaPlus) {
+        this.luminosita += luminositaPlus;
     }
 
     @Override
-    public void abbassaLuminosita() {
+    public void abbassaLuminosita(int luminositaMinus) {
+        this.luminosita -= luminositaMinus;
+
 
     }
 
     public void show() {
-        System.out.println("Titolo: " + getTitolo() + ", luminosita: " + luminosita);
+        System.out.println("Visualizzazione immagine in corso");
+
+        for (int i = 0; i < 1; i++) {
+            System.out.print(this.getTitolo());
+            for (int j = 0; j < this.luminosita; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
     }
+
+
 }
