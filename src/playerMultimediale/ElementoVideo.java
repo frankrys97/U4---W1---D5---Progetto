@@ -57,7 +57,15 @@ public class ElementoVideo extends ElementoMultimediale implements RiproduzioneA
         return volume;
     }
 
+    public void setVolume(int volume) {
+        this.volume = volume;
+    }
+
     public int getLuminosita() {
         return luminosita;
+    }
+
+    public void setLuminosita(int luminosita) {
+        this.luminosita = luminosita;
     }
 }

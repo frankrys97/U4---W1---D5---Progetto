@@ -40,4 +40,8 @@ public class ElementoAudio extends ElementoMultimediale implements RiproduzioneA
     public int getVolume() {
         return volume;
     }
+
+    public void setVolume(int volume) {
+        this.volume = volume;
+    }
 }
