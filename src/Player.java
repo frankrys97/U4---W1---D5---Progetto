@@ -145,7 +145,7 @@ public class Player {
 
                 ElementoMultimediale elementoScelto = elementiPlayer[sceltaRiproduzione - 1];
                 if (elementoScelto instanceof ElementoAudio) {
-                    System.out.println("Elemento in esecuzione " + elementoScelto.getTitolo());
+                    System.out.println("Elemento in esecuzione: " + elementoScelto.getTitolo());
                     System.out.println("Scegli tra le seguenti opzioni:");
                     System.out.println("1. Riproduci Audio");
                     System.out.println("2. Cambia Volume");
@@ -190,6 +190,7 @@ public class Player {
                                         break;
                                     }
                                     ((ElementoAudio) elementoScelto).abbassaVolume(volumeMinus);
+                                    ((ElementoAudio) elementoScelto).play();
 
                                     break;
                                 default:
@@ -204,7 +205,7 @@ public class Player {
 
                     /*((ElementoAudio) elementoScelto).play();*/
                 } else if (elementoScelto instanceof ElementoVideo) {
-                    System.out.println("Elemento in esecuzione " + elementoScelto.getTitolo());
+                    System.out.println("Elemento in esecuzione: " + elementoScelto.getTitolo());
                     System.out.println("Scegli tra le seguenti opzioni:");
                     System.out.println("1. Riproduci Video");
                     System.out.println("2. Cambia Volume");
@@ -250,6 +251,7 @@ public class Player {
                                         break;
                                     }
                                     ((ElementoVideo) elementoScelto).abbassaVolume(volumeMinus);
+                                    ((ElementoVideo) elementoScelto).play();
                                     break;
                                 default:
                                     System.out.println("Scelta non valida");
@@ -271,6 +273,7 @@ public class Player {
                                         break;
                                     }
                                     ((ElementoVideo) elementoScelto).alzaLuminosita(luminositaPlus);
+                                    ((ElementoVideo) elementoScelto).play();
                                     break;
                                 case 2:
                                     System.out.println("Inserisci il valore della luminosità da diminuire");
@@ -283,12 +286,14 @@ public class Player {
                                         int sceltaLuminositaMinus = Integer.parseInt(scannerPlayer.nextLine());
                                         if (sceltaLuminositaMinus == 1) {
                                             ((ElementoVideo) elementoScelto).setLuminosita(0);
+                                            ((ElementoVideo) elementoScelto).play();
                                         } else if (sceltaLuminositaMinus == 2) {
                                             break;
                                         }
                                         break;
                                     }
                                     ((ElementoVideo) elementoScelto).abbassaLuminosita(luminositaMinus);
+                                    ((ElementoVideo) elementoScelto).play();
                                     break;
                                 default:
                                     System.out.println("Scelta non valida");
@@ -303,7 +308,7 @@ public class Player {
                     /*((ElementoVideo) elementoScelto).play();*/
                 } else if (elementoScelto instanceof ElementoImmagine) {
 
-                    System.out.println("Elemento in esecuzione " + elementoScelto.getTitolo());
+                    System.out.println("Elemento in esecuzione: " + elementoScelto.getTitolo());
                     System.out.println("Scegli tra le seguenti opzioni:");
                     System.out.println("1. Visualizza Immagine");
                     System.out.println("2. Cambia Luminosità");
@@ -328,6 +333,7 @@ public class Player {
                                         break;
                                     }
                                     ((ElementoImmagine) elementoScelto).alzaLuminosita(luminositaPlus);
+                                    ((ElementoImmagine) elementoScelto).show();
                                     break;
                                 case 2:
                                     System.out.println("Inserisci il valore della luminosità da diminuire");
@@ -340,12 +346,14 @@ public class Player {
                                         int sceltaLuminositaMinus = Integer.parseInt(scannerPlayer.nextLine());
                                         if (sceltaLuminositaMinus == 1) {
                                             ((ElementoImmagine) elementoScelto).setLuminosita(0);
+                                            ((ElementoImmagine) elementoScelto).show();
                                         } else if (sceltaLuminositaMinus == 2) {
                                             break;
                                         }
                                         break;
                                     }
                                     ((ElementoImmagine) elementoScelto).abbassaLuminosita(luminositaMinus);
+                                    ((ElementoImmagine) elementoScelto).show();
                                     break;
                                 default:
                                     System.out.println("Scelta non valida");

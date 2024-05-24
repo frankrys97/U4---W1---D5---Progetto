@@ -25,7 +25,8 @@ public class ElementoImmagine extends ElementoMultimediale implements Luminosita
     }
 
     public void show() {
-        System.out.println("Visualizzazione immagine in corso");
+        System.out.println("Visualizzazione immagine in corso...");
+        System.out.println();
 
         for (int i = 0; i < 1; i++) {
             System.out.print(this.getTitolo());
