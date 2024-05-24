@@ -118,19 +118,21 @@ public class Player {
                     tipo = "Audio";
                     durata = String.valueOf(elementiPlayer[i].getDurata());
                     volume = String.valueOf(((ElementoAudio) elementiPlayer[i]).getVolume());
-                    luminosita = "Assente";
+                    System.out.println(numeroElemento + ". " + elementiPlayer[i].getTitolo() + " - " + tipo + " - Durata: " + durata + " - Volume: " + volume);
                 } else if (elementiPlayer[i] instanceof ElementoVideo) {
                     tipo = "Video";
                     durata = String.valueOf(elementiPlayer[i].getDurata());
                     volume = String.valueOf(((ElementoVideo) elementiPlayer[i]).getVolume());
                     luminosita = String.valueOf(((ElementoVideo) elementiPlayer[i]).getLuminosita());
+                    System.out.println(numeroElemento + ". " + elementiPlayer[i].getTitolo() + " - " + tipo + " - Durata: " + durata + " - Volume: " + volume + " - Luminosità: " + luminosita);
                 } else if (elementiPlayer[i] instanceof ElementoImmagine) {
                     tipo = "Immagine";
-                    durata = "Assente";
-                    volume = "Assente";
                     luminosita = String.valueOf(((ElementoImmagine) elementiPlayer[i]).getLuminosita());
+                    System.out.println(numeroElemento + ". " + elementiPlayer[i].getTitolo() + " - " + tipo + " - Luminosità: " + luminosita);
                 }
+/*
                 System.out.println(numeroElemento + ". " + elementiPlayer[i].getTitolo() + " - " + tipo + " - Durata: " + durata + " - Volume: " + volume + " - Luminosità: " + luminosita);
+*/
                 // Ho preferito inserire tutte le informazioni relative all'elemento multimediale in modo da rendere più facile la lettura
                 // delle informazione relative alle stampe che avevamo nella traccia del progetto
             }
@@ -145,7 +147,8 @@ public class Player {
 
                 ElementoMultimediale elementoScelto = elementiPlayer[sceltaRiproduzione - 1];
                 if (elementoScelto instanceof ElementoAudio) {
-                    System.out.println("Elemento in esecuzione: " + elementoScelto.getTitolo());
+                    System.out.println("Elemento in esecuzione: " + elementoScelto.getTitolo() + " - Durata: " + elementoScelto.getDurata() + " - Volume: " + ((ElementoAudio) elementoScelto).getVolume());
+                    System.out.println();
                     System.out.println("Scegli tra le seguenti opzioni:");
                     System.out.println("1. Riproduci Audio");
                     System.out.println("2. Cambia Volume");
@@ -158,8 +161,12 @@ public class Player {
                         case 2:
                             System.out.println("Il volume corrente e': " + ((ElementoAudio) elementoScelto).getVolume());
                             System.out.println("Scegli tra le seguenti opzioni:");
-                            System.out.println("1. Alza Volume");
-                            System.out.println("2. Abbassa Volume");
+                            if (((ElementoAudio) elementoScelto).getVolume() == 0) {
+                                System.out.println("1. Alza Volume");
+                            } else {
+                                System.out.println("1. Alza Volume");
+                                System.out.println("2. Abbassa Volume");
+                            }
                             int sceltaVolume = Integer.parseInt(scannerPlayer.nextLine());
                             switch (sceltaVolume) {
                                 case 1:
@@ -205,7 +212,8 @@ public class Player {
 
                     /*((ElementoAudio) elementoScelto).play();*/
                 } else if (elementoScelto instanceof ElementoVideo) {
-                    System.out.println("Elemento in esecuzione: " + elementoScelto.getTitolo());
+                    System.out.println("Elemento in esecuzione: " + elementoScelto.getTitolo() + " - Durata: " + elementoScelto.getDurata() + " - Volume: " + ((ElementoVideo) elementoScelto).getVolume() + " - Luminosità: " + ((ElementoVideo) elementoScelto).getLuminosita());
+                    System.out.println();
                     System.out.println("Scegli tra le seguenti opzioni:");
                     System.out.println("1. Riproduci Video");
                     System.out.println("2. Cambia Volume");
@@ -219,8 +227,12 @@ public class Player {
                         case 2:
                             System.out.println("Il volume corrente e': " + ((ElementoVideo) elementoScelto).getVolume());
                             System.out.println("Scegli tra le seguenti opzioni:");
-                            System.out.println("1. Alza Volume");
-                            System.out.println("2. Abbassa Volume");
+                            if (((ElementoVideo) elementoScelto).getVolume() == 0) {
+                                System.out.println("1. Alza Volume");
+                            } else {
+                                System.out.println("1. Alza Volume");
+                                System.out.println("2. Abbassa Volume");
+                            }
                             int sceltaVolume = Integer.parseInt(scannerPlayer.nextLine());
                             switch (sceltaVolume) {
                                 case 1:
@@ -261,8 +273,12 @@ public class Player {
                         case 3:
                             System.out.println("Il luminosità corrente e': " + ((ElementoVideo) elementoScelto).getLuminosita());
                             System.out.println("Scegli tra le seguenti opzioni:");
-                            System.out.println("1. Alza Luminosità");
-                            System.out.println("2. Abbassa Luminosità");
+                            if (((ElementoVideo) elementoScelto).getLuminosita() == 0) {
+                                System.out.println("1. Alza Luminosità");
+                            } else {
+                                System.out.println("1. Alza Luminosità");
+                                System.out.println("2. Abbassa Luminosità");
+                            }
                             int sceltaLuminosita = Integer.parseInt(scannerPlayer.nextLine());
                             switch (sceltaLuminosita) {
                                 case 1:
@@ -308,7 +324,8 @@ public class Player {
                     /*((ElementoVideo) elementoScelto).play();*/
                 } else if (elementoScelto instanceof ElementoImmagine) {
 
-                    System.out.println("Elemento in esecuzione: " + elementoScelto.getTitolo());
+                    System.out.println("Elemento in esecuzione: " + elementoScelto.getTitolo() + " - Luminosità: " + ((ElementoImmagine) elementoScelto).getLuminosita());
+                    System.out.println();
                     System.out.println("Scegli tra le seguenti opzioni:");
                     System.out.println("1. Visualizza Immagine");
                     System.out.println("2. Cambia Luminosità");
@@ -321,8 +338,12 @@ public class Player {
                         case 2:
                             System.out.println("Il luminosità corrente e': " + ((ElementoImmagine) elementoScelto).getLuminosita());
                             System.out.println("Scegli tra le seguenti opzioni:");
-                            System.out.println("1. Alza Luminosità");
-                            System.out.println("2. Abbassa Luminosità");
+                            if (((ElementoImmagine) elementoScelto).getLuminosita() == 0) {
+                                System.out.println("1. Alza Luminosità");
+                            } else {
+                                System.out.println("1. Alza Luminosità");
+                                System.out.println("2. Abbassa Luminosità");
+                            }
                             int sceltaLuminosita = Integer.parseInt(scannerPlayer.nextLine());
                             switch (sceltaLuminosita) {
                                 case 1:
