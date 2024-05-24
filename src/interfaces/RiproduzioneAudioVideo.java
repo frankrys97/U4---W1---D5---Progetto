@@ -1,9 +1,9 @@
 package interfaces;
 
 public interface RiproduzioneAudioVideo {
-    public void play();
+    void play();
 
-    public void alzaVolume(int volumePlus);
+    void alzaVolume(int volumePlus);
 
-    public void abbassaVolume(int volumeMinus);
+    void abbassaVolume(int volumeMinus);
 }

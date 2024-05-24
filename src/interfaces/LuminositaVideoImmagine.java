@@ -2,7 +2,7 @@ package interfaces;
 
 public interface LuminositaVideoImmagine {
 
-    public void alzaLuminosita(int luminositaPlus);
+    void alzaLuminosita(int luminositaPlus);
 
-    public void abbassaLuminosita(int luminositaMinus);
+    void abbassaLuminosita(int luminositaMinus);
 }

@@ -110,10 +110,10 @@ public class Player {
             System.out.println("Questo è il tuo player: ");
             for (int i = 0; i < elementiPlayer.length; i++) {
                 int numeroElemento = i + 1;
-                String tipo = "";
-                String durata = "";
-                String volume = "";
-                String luminosita = "";
+                String tipo;
+                String durata;
+                String volume;
+                String luminosita;
                 if (elementiPlayer[i] instanceof ElementoAudio) {
                     tipo = "Audio";
                     durata = String.valueOf(elementiPlayer[i].getDurata());
