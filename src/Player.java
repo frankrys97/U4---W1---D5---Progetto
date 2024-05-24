@@ -46,36 +46,46 @@ public class Player {
             int scelta = scannerPlayer.nextInt();
             scannerPlayer.nextLine();
 
-            System.out.println("Creazione elemento multimediale in corso");
+/*            System.out.println("Creazione elemento multimediale in corso");
 
             System.out.println("Scegli un titolo per il tuo file:");
 
             String titolo = scannerPlayer.nextLine();
 
+            Ho deciso di implementare queste parti direttamente nei cases dello switch in modo da avere una UX migliore
+
+            */
+
             switch (scelta) {
                 case 1:
                     System.out.println("Creazione elemento immagine in corso...");
+                    System.out.println("Scegli un titolo per il tuo file:");
+                    String titoloImmagine = scannerPlayer.nextLine();
                     System.out.println("Scegli la luminosità");
-                    int luminosita = Integer.parseInt(scannerPlayer.nextLine());
-                    elementiPlayer[i] = new ElementoImmagine(titolo, luminosita);
+                    int luminositaImmagine = Integer.parseInt(scannerPlayer.nextLine());
+                    elementiPlayer[i] = new ElementoImmagine(titoloImmagine, luminositaImmagine);
                     break;
                 case 2:
                     System.out.println("Creazione elemento audio in corso...");
+                    System.out.println("Scegli un titolo per il tuo file:");
+                    String titoloAudio = scannerPlayer.nextLine();
                     System.out.println("Scegli la durata");
-                    int durata = Integer.parseInt(scannerPlayer.nextLine());
+                    int durataAudio = Integer.parseInt(scannerPlayer.nextLine());
                     System.out.println("Scegli il volume");
-                    int volume = Integer.parseInt(scannerPlayer.nextLine());
-                    elementiPlayer[i] = new ElementoAudio(titolo, durata, volume);
+                    int volumeAudio = Integer.parseInt(scannerPlayer.nextLine());
+                    elementiPlayer[i] = new ElementoAudio(titoloAudio, durataAudio, volumeAudio);
                     break;
                 case 3:
                     System.out.println("Creazione elemento video in corso...");
+                    System.out.println("Scegli un titolo per il tuo file:");
+                    String titoloVideo = scannerPlayer.nextLine();
                     System.out.println("Scegli la durata");
                     int durataVideo = Integer.parseInt(scannerPlayer.nextLine());
                     System.out.println("Scegli il volume");
                     int volumeVideo = Integer.parseInt(scannerPlayer.nextLine());
                     System.out.println("Scegli la luminosità");
                     int luminositaVideo = Integer.parseInt(scannerPlayer.nextLine());
-                    elementiPlayer[i] = new ElementoVideo(titolo, durataVideo, volumeVideo, luminositaVideo);
+                    elementiPlayer[i] = new ElementoVideo(titoloVideo, durataVideo, volumeVideo, luminositaVideo);
                     break;
                 default:
                     System.out.println("Scelta non valida, scelte possibile da 1 a 3");
@@ -121,6 +131,8 @@ public class Player {
                     luminosita = String.valueOf(((ElementoImmagine) elementiPlayer[i]).getLuminosita());
                 }
                 System.out.println(numeroElemento + ". " + elementiPlayer[i].getTitolo() + " - " + tipo + " - Durata: " + durata + " - Volume: " + volume + " - Luminosità: " + luminosita);
+                // Ho preferito inserire tutte le informazioni relative all'elemento multimediale in modo da rendere più facile la lettura
+                // delle informazione relative alle stampe che avevamo nella traccia del progetto
             }
 
             System.out.println();
@@ -133,11 +145,119 @@ public class Player {
 
                 ElementoMultimediale elementoScelto = elementiPlayer[sceltaRiproduzione - 1];
                 if (elementoScelto instanceof ElementoAudio) {
-                    ((ElementoAudio) elementoScelto).play();
+                    System.out.println("Elemento in esecuzione " + elementoScelto.getTitolo());
+                    System.out.println("Scegli tra le seguenti opzioni:");
+                    System.out.println("1. Riproduci Audio");
+                    System.out.println("2. Cambia Volume");
+
+                    int sceltaAudio = Integer.parseInt(scannerPlayer.nextLine());
+                    switch (sceltaAudio) {
+                        case 1:
+                            ((ElementoAudio) elementoScelto).play();
+                            break;
+                        case 2:
+                            System.out.println("Il volume corrente e': " + ((ElementoAudio) elementoScelto).getVolume());
+                            System.out.println("Scegli tra le seguenti opzioni:");
+                            System.out.println("1. Alza Volume");
+                            System.out.println("2. Abbassa Volume");
+                            int sceltaVolume = Integer.parseInt(scannerPlayer.nextLine());
+                            switch (sceltaVolume) {
+                                case 1:
+                                    System.out.println("Inserisci il valore del volume da aumentare");
+                                    int volumePlus = Integer.parseInt(scannerPlayer.nextLine());
+                                    ((ElementoAudio) elementoScelto).alzaVolume(volumePlus);
+                                    break;
+                                case 2:
+                                    System.out.println("Inserisci il valore del volume da diminuire");
+                                    int volumeMinus = Integer.parseInt(scannerPlayer.nextLine());
+                                    ((ElementoAudio) elementoScelto).abbassaVolume(volumeMinus);
+                                    break;
+                                default:
+                                    System.out.println("Scelta non valida");
+                                    break;
+                            }
+                            break;
+                        default:
+                            System.out.println("Scelta non valida");
+                            break;
+                    }
+
+                    /*((ElementoAudio) elementoScelto).play();*/
                 } else if (elementoScelto instanceof ElementoVideo) {
-                    ((ElementoVideo) elementoScelto).play();
+                    System.out.println("Elemento in esecuzione " + elementoScelto.getTitolo());
+                    System.out.println("Scegli tra le seguenti opzioni:");
+                    System.out.println("1. Riproduci Video");
+                    System.out.println("2. Cambia Volume");
+                    System.out.println("3. Cambia Luminosità");
+
+                    int sceltaVideo = Integer.parseInt(scannerPlayer.nextLine());
+                    switch (sceltaVideo) {
+                        case 1:
+                            ((ElementoVideo) elementoScelto).play();
+                            break;
+                        case 2:
+                            System.out.println("Il volume corrente e': " + ((ElementoVideo) elementoScelto).getVolume());
+                            System.out.println("Scegli tra le seguenti opzioni:");
+                            System.out.println("1. Alza Volume");
+                            System.out.println("2. Abbassa Volume");
+                            int sceltaVolume = Integer.parseInt(scannerPlayer.nextLine());
+                            switch (sceltaVolume) {
+                                case 1:
+                                    System.out.println("Inserisci il valore del volume da aumentare");
+                                    int volumePlus = Integer.parseInt(scannerPlayer.nextLine());
+                                    ((ElementoVideo) elementoScelto).alzaVolume(volumePlus);
+                                    break;
+                                case 2:
+                                    System.out.println("Inserisci il valore del volume da diminuire");
+                                    int volumeMinus = Integer.parseInt(scannerPlayer.nextLine());
+                                    ((ElementoVideo) elementoScelto).abbassaVolume(volumeMinus);
+                                    break;
+                                default:
+                                    System.out.println("Scelta non valida");
+                                    break;
+                            }
+                            break;
+                        case 3:
+                            System.out.println("Il luminosità corrente e': " + ((ElementoVideo) elementoScelto).getLuminosita());
+                            System.out.println("Scegli tra le seguenti opzioni:");
+                            System.out.println("1. Alza Luminosità");
+                            System.out.println("2. Abbassa Luminosità");
+                            int sceltaLuminosita = Integer.parseInt(scannerPlayer.nextLine());
+                            switch (sceltaLuminosita) {
+                                case 1:
+                                    System.out.println("Inserisci il valore della luminosità da aumentare");
+                                    int luminositaPlus = Integer.parseInt(scannerPlayer.nextLine());
+                                    ((ElementoVideo) elementoScelto).alzaLuminosita(luminositaPlus);
+                                    break;
+                                case 2:
+                                    System.out.println("Inserisci il valore della luminosità da diminuire");
+                                    int luminositaMinus = Integer.parseInt(scannerPlayer.nextLine());
+                                    ((ElementoVideo) elementoScelto).abbassaLuminosita(luminositaMinus);
+                                    break;
+                                default:
+                                    System.out.println("Scelta non valida");
+                                    break;
+                            }
+                            break;
+                        default:
+                            System.out.println("Scelta non valida");
+                            break;
+                    }
+
+                    /*((ElementoVideo) elementoScelto).play();*/
                 } else if (elementoScelto instanceof ElementoImmagine) {
-                    ((ElementoImmagine) elementoScelto).show();
+
+                    System.out.println("Elemento in esecuzione " + elementoScelto.getTitolo());
+                    System.out.println("Scegli tra le seguenti opzioni:");
+                    System.out.println("1. Visualizza Immagine");
+                    int sceltaImmagine = Integer.parseInt(scannerPlayer.nextLine());
+                    if (sceltaImmagine == 1) {
+                        ((ElementoImmagine) elementoScelto).show();
+                    } else {
+                        System.out.println("Scelta non valida");
+                    }
+
+                    /*((ElementoImmagine) elementoScelto).show();*/
                 }
 
             } else if (sceltaRiproduzione != 0 && sceltaRiproduzione > elementiPlayer.length) {
