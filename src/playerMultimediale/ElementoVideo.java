@@ -52,4 +52,12 @@ public class ElementoVideo extends ElementoMultimediale implements RiproduzioneA
         this.volume -= volumeMinus;
 
     }
+
+    public int getVolume() {
+        return volume;
+    }
+
+    public int getLuminosita() {
+        return luminosita;
+    }
 }

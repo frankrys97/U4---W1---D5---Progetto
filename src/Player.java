@@ -31,6 +31,8 @@ public class Player {
 
         Scanner scannerPlayer = new Scanner(System.in);
 
+        System.out.println("Ciao benvenuto in EpiPLayer!");
+
         ElementoMultimediale[] elementiPlayer = new ElementoMultimediale[5];
 
         for (int i = 0; i < elementiPlayer.length; i++) {
@@ -53,32 +55,26 @@ public class Player {
             switch (scelta) {
                 case 1:
                     System.out.println("Creazione elemento immagine in corso...");
-                    System.out.println("Scegli la luminosita'");
+                    System.out.println("Scegli la luminosità");
                     int luminosita = Integer.parseInt(scannerPlayer.nextLine());
-                    scannerPlayer.nextLine();
                     elementiPlayer[i] = new ElementoImmagine(titolo, luminosita);
                     break;
                 case 2:
                     System.out.println("Creazione elemento audio in corso...");
                     System.out.println("Scegli la durata");
                     int durata = Integer.parseInt(scannerPlayer.nextLine());
-                    scannerPlayer.nextLine();
-                    System.out.println("Scegli il volume'");
+                    System.out.println("Scegli il volume");
                     int volume = Integer.parseInt(scannerPlayer.nextLine());
-                    scannerPlayer.nextLine();
                     elementiPlayer[i] = new ElementoAudio(titolo, durata, volume);
                     break;
                 case 3:
                     System.out.println("Creazione elemento video in corso...");
                     System.out.println("Scegli la durata");
                     int durataVideo = Integer.parseInt(scannerPlayer.nextLine());
-                    scannerPlayer.nextLine();
-                    System.out.println("Scegli il volume'");
+                    System.out.println("Scegli il volume");
                     int volumeVideo = Integer.parseInt(scannerPlayer.nextLine());
-                    scannerPlayer.nextLine();
-                    System.out.println("Scegli la luminosita'");
+                    System.out.println("Scegli la luminosità");
                     int luminositaVideo = Integer.parseInt(scannerPlayer.nextLine());
-                    scannerPlayer.nextLine();
                     elementiPlayer[i] = new ElementoVideo(titolo, durataVideo, volumeVideo, luminositaVideo);
                     break;
                 default:
@@ -97,29 +93,61 @@ public class Player {
         scannerPlayer.nextLine();
 
         System.out.println("Caricamento in corso...");
-        System.out.println("Questo è il tuo player: ");
-        for (int i = 0; i < elementiPlayer.length; i++) {
-            System.out.println(elementiPlayer[i].getTitolo());
-        }
 
-        System.out.println("Seleziona quale elemento vuoi eseguire ( 1 a 5 ) per iniziare la riproduzione oppure 0 per uscire");
 
-        int sceltaRiproduzione = scannerPlayer.nextInt();
-        scannerPlayer.nextLine();
-        if (sceltaRiproduzione != 0 && sceltaRiproduzione <= elementiPlayer.length) {
-
-            ElementoMultimediale elementoScelto = elementiPlayer[sceltaRiproduzione - 1];
-            if (elementoScelto instanceof ElementoAudio) {
-                ((ElementoAudio) elementoScelto).play();
-            } else if (elementoScelto instanceof ElementoVideo) {
-                ((ElementoVideo) elementoScelto).play();
-            } else if (elementoScelto instanceof ElementoImmagine) {
-                ((ElementoImmagine) elementoScelto).show();
+        while (true) {
+            System.out.println();
+            System.out.println("Questo è il tuo player: ");
+            for (int i = 0; i < elementiPlayer.length; i++) {
+                int numeroElemento = i + 1;
+                String tipo = "";
+                String durata = "";
+                String volume = "";
+                String luminosita = "";
+                if (elementiPlayer[i] instanceof ElementoAudio) {
+                    tipo = "Audio";
+                    durata = String.valueOf(((ElementoAudio) elementiPlayer[i]).getDurata());
+                    volume = String.valueOf(((ElementoAudio) elementiPlayer[i]).getVolume());
+                    luminosita = "Assente";
+                } else if (elementiPlayer[i] instanceof ElementoVideo) {
+                    tipo = "Video";
+                    durata = String.valueOf(((ElementoVideo) elementiPlayer[i]).getDurata());
+                    volume = String.valueOf(((ElementoVideo) elementiPlayer[i]).getVolume());
+                    luminosita = String.valueOf(((ElementoVideo) elementiPlayer[i]).getLuminosita());
+                } else if (elementiPlayer[i] instanceof ElementoImmagine) {
+                    tipo = "Immagine";
+                    durata = "Assente";
+                    volume = "Assente";
+                    luminosita = String.valueOf(((ElementoImmagine) elementiPlayer[i]).getLuminosita());
+                }
+                System.out.println(numeroElemento + ". " + elementiPlayer[i].getTitolo() + " - " + tipo + " - Durata: " + durata + " - Volume: " + volume + " - Luminosità: " + luminosita);
             }
 
-        } else {
-            System.out.println("Arrivederci");
+            System.out.println();
+
+            System.out.println("Seleziona quale elemento vuoi eseguire ( 1 a 5 ) per iniziare la riproduzione oppure 0 per uscire");
+
+            int sceltaRiproduzione = Integer.parseInt(scannerPlayer.nextLine());
+
+            if (sceltaRiproduzione != 0 && sceltaRiproduzione <= elementiPlayer.length) {
+
+                ElementoMultimediale elementoScelto = elementiPlayer[sceltaRiproduzione - 1];
+                if (elementoScelto instanceof ElementoAudio) {
+                    ((ElementoAudio) elementoScelto).play();
+                } else if (elementoScelto instanceof ElementoVideo) {
+                    ((ElementoVideo) elementoScelto).play();
+                } else if (elementoScelto instanceof ElementoImmagine) {
+                    ((ElementoImmagine) elementoScelto).show();
+                }
+
+            } else if (sceltaRiproduzione != 0 && sceltaRiproduzione > elementiPlayer.length) {
+                System.out.println("Scelta non valida");
+            } else {
+                System.out.println("Arrivederci, a presto");
+                break;
+            }
         }
+        ;
 
 
         scannerPlayer.close();

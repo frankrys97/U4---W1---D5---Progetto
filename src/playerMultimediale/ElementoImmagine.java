@@ -36,5 +36,7 @@ public class ElementoImmagine extends ElementoMultimediale implements Luminosita
         }
     }
 
-
+    public int getLuminosita() {
+        return luminosita;
+    }
 }
